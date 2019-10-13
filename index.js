@@ -17,9 +17,17 @@ app.use(function(state,emitter){
   
   //emitter a way to signify change in the state
   // add animal
-  emitter.on('addAnimal', function () {
-    var obj = {type: 'lion', x: 100, y: 200}
+  emitter.on('addAnimal', function (data) {
+    var animals = ['crocodile', 'koala', 'lion', 'tiger', 'walrus']
+    var type = Math.floor(Math.random() * 5)
+    var obj = {type: animals[type], x: data.x, y: data.y}
     state.animals.push(obj)
+    emitter.emit('render')
+  })
+  
+  // remove animal
+  emitter.on('removeAnimal', function (index) {
+    state.animals.splice(index, 1)
     emitter.emit('render')
   })
   
