@@ -9,7 +9,11 @@ var app = choo()
 
 //state management
 app.use(function(state){
-  state.animals = {type:'lion',x:13,y:15};
+    // initialize state
+  state.animals = [
+    {type: 'lion', x: 200, y: 100},
+    {type: 'crocodile', x: 50, y: 300}
+  ];
 });
 
 // create a route
