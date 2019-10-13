@@ -11,12 +11,30 @@ module.exports = function (state,emit) {
         <img src="/assets/bg.gif" />
         ${state.animals.map(animalMap)}
       </div>
+      <div class="controls">
+      <ul class="filters">
+        <li><a href="/">all</a></li>
+        <li><a href="/#filter/crocodile">crocodiles</a></li>
+        <li><a href="/#filter/koala">koalas</a></li>
+        <li><a href="/#filter/lion">lions</a></li>
+        <li><a href="/#filter/tiger">tigers</a></li>
+        <li><a href="/#filter/walrus">walruses</a></li>
+      </ul>
+    </div>
     </div>
   `
   
   // map function
   function animalMap (data, index) {
-    return animal(remove, data, index)
+    
+    var type = state.params.type
+
+    if (type && type !== data.type) {
+      return; // nothing
+    } else {
+      return animal(remove, data, index)
+    }
+    
   }
   
   //add function to add an animal to ui
